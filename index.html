@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antagonist Studios - Custom Mechanical Keyboards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4ecdc4;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4ecdc4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('hero.jpg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* dark overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, #ff6b6b, transparent, #4ecdc4, transparent);
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px #4ecdc4); }
+            to { filter: drop-shadow(0 0 30px #4ecdc4); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            border-color: #4ecdc4;
+            background: linear-gradient(45deg, #4ecdc4, #45b7aa);
+        }
+
+        .btn-secondary {
+            border-color: #ff6b6b;
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+        }
+
+        /* Series Sections */
+        .series-section {
+            min-height: 100vh;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Origami Series - Paper Theme */
+        .origami-series {
+            background: linear-gradient(135deg, #2a2520 0%, #1a1815 100%);
+            position: relative;
+        }
+
+        .origami-series::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(245, 222, 179, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 240, 215, 0.05) 0%, transparent 50%);
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .origami-series::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(45deg, transparent 48%, rgba(245, 222, 179, 0.02) 49%, rgba(245, 222, 179, 0.02) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(245, 222, 179, 0.02) 49%, rgba(245, 222, 179, 0.02) 51%, transparent 52%);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        .origami-pattern {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #d4af37, #f5deb3);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+        }
+
+        .origami-crane {
+            position: absolute;
+            top: 60%;
+            left: 8%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f5deb3, #daa520);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+            opacity: 0.08;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .series-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .series-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .origami-title {
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .series-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .keyboard-card.origami-card {
+            padding: 1;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .keyboard-image {
+            height: 100vh;
+            width: 100%;
+            border: none;
+            margin: 0;
+        }
+
+        .keyboard-image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 1;
+        }
+
+
+        .keyboard-card {
+            background: rgba(245, 222, 179, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 222, 179, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 1px 3px rgba(0,0,0,0.12),
+                0 1px 2px rgba(0,0,0,0.24),
+                inset 0 1px 0 rgba(245, 222, 179, 0.1);
+        }
+
+        .keyboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 222, 179, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .keyboard-card:hover::before {
+            left: 100%;
+        }
+
+        .keyboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 10px 30px rgba(212, 175, 55, 0.2),
+                0 1px 3px rgba(0,0,0,0.12),
+                0 1px 2px rgba(0,0,0,0.24),
+                inset 0 1px 0 rgba(245, 222, 179, 0.2);
+        }
+
+        .keyboard-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+
+        .keyboard-type {
+            color: #f5deb3;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .keyboard-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .keyboard-image {
+            width: 100%;
+            height: 600px; /* Increased height */
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .keyboard-image:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .keyboard-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .origami-card .keyboard-image {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(245, 222, 179, 0.02);
+        }
+
+        .origami-card .keyboard-image:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(245, 222, 179, 0.05);
+        }
+
+        .automotive-card .keyboard-image {
+            border-color: rgba(255, 69, 0, 0.3);
+            background: rgba(25, 25, 25, 0.5);
+        }
+
+        .automotive-card .keyboard-image:hover {
+            border-color: rgba(255, 69, 0, 0.5);
+            background: rgba(25, 25, 25, 0.7);
+        }
+
+        /* Automotive Series - Industrial JDM Theme */
+        .automotive-series {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .automotive-series::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(255, 69, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(255, 69, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(45deg, rgba(70, 130, 180, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(70, 130, 180, 0.03) 25%, transparent 25%);
+            background-size: 50px 50px, 50px 50px, 100px 100px, 100px 100px;
+            pointer-events: none;
+        }
+
+        .automotive-series::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 180px;
+            height: 180px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 69, 0, 0.1) 0%, transparent 50%),
+                conic-gradient(from 0deg, transparent, rgba(70, 130, 180, 0.1), transparent);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+            pointer-events: none;
+        }
+
+        .automotive-grid {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            background-image: 
+                linear-gradient(rgba(255, 69, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 69, 0, 0.1) 1px, transparent 1px);
+            background-size: 25px 25px;
+            opacity: 0.3;
+            transform: perspective(500px) rotateX(45deg);
+        }
+
+        .automotive-title {
+            color: #ff4500;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+        }
+
+        .automotive-card {
+            background: rgba(25, 25, 25, 0.8);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+            box-shadow: 
+                0 0 20px rgba(255, 69, 0, 0.1),
+                inset 0 1px 0 rgba(70, 130, 180, 0.1);
+        }
+
+        .automotive-card::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 69, 0, 0.1), transparent);
+        }
+
+        .automotive-card:hover {
+            box-shadow: 
+                0 20px 40px rgba(255, 69, 0, 0.2),
+                0 0 30px rgba(70, 130, 180, 0.1),
+                inset 0 1px 0 rgba(70, 130, 180, 0.2);
+            border-color: rgba(255, 69, 0, 0.5);
+        }
+
+        .automotive-card .keyboard-name {
+            color: #ff4500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .automotive-card .keyboard-type {
+            color: #4682b4;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0d1a0d 0%, #1a0d1a 100%);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(78, 205, 196, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            opacity: 0.8;
+        }
+        .future-section {
+            background: linear-gradient(135deg, #1a1a0d 0%, #0d1a0d 100%);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .future-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .future-description {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .keyboards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Antagonist Studios</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#origami">Origami Series</a></li>
+                <li><a href="#automotive">Automotive Series</a></li>
+                <li><a href="#future">Future</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Antagonist Studios</h1>
+            <p>Crafting premium mechanical keyboards that challenge convention</p>
+            <div class="cta-buttons">
+                <a href="#origami" class="btn btn-primary">Explore Origami Series</a>
+                <a href="#automotive" class="btn btn-secondary">Discover Automotive Series</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="origami" class="series-section origami-series">
+        <div class="origami-pattern"></div>
+        <div class="origami-crane"></div>
+        <div class="container">
+            <div class="series-header">
+                <h2 class="series-title origami-title">折り紙 Origami Series</h2>
+                <p class="series-subtitle">Where precision meets artistry in the ancient art of folding</p>
+            </div>
+            
+            <div class="keyboards-grid">
+                <div class="keyboard-card origami-card">
+                    <div class="keyboard-image">
+                        <img src="kitsune.png">
+                    </div>
+                    <h3 class="keyboard-name">Kitsune</h3>
+                    <p class="keyboard-type">FRL TKL (Tenkeyless)</p>
+                    <p class="keyboard-description">
+                        Inspired by the cunning and elegance of the Japanese fox spirit, the Kitsune features 
+                        clean lines and a minimalist aesthetic that embodies the essence of origami's precise folds. 
+                        Like delicate paper transformed through patient artistry, this keyboard delivers maximum 
+                        functionality while maintaining the serene beauty of traditional Japanese craftsmanship.
+                    </p>
+                </div>
+                
+                <div class="keyboard-card origami-card">
+                    <div class="keyboard-image">
+                        <img src="peacock.png">
+                    </div>
+                    <h3 class="keyboard-name">Peacock</h3>
+                    <p class="keyboard-type">65XT (Compact)</p>
+                    <p class="keyboard-description">
+                        Like the magnificent display of a peacock's plumage unfolding from a single sheet of paper, 
+                        this keyboard showcases intricate details and vibrant possibilities. The 65% layout offers 
+                        the perfect balance of functionality and space efficiency, with each key crafted with the 
+                        same reverence as a master origami artist's final fold.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="automotive" class="series-section automotive-series">
+        <div class="automotive-grid"></div>
+        <div class="container">
+            <div class="series-header">
+                <h2 class="series-title automotive-title">Automotive Series</h2>
+                <p class="series-subtitle">Forged in the underground, built for performance</p>
+            </div>
+            
+        <div class="keyboards-grid">
+            <div class="keyboard-card automotive-card">
+                <div class="keyboard-image">
+                    <img src="jdm60.png" alt="JDM-60 Keyboard">
+                </div>
+                <h3 class="keyboard-name">JDM-60</h3>
+                <p class="keyboard-type">60% Layout</p>
+                <p class="keyboard-description">
+                    Machined from the soul of Japan's underground racing scene, the JDM-60 embodies raw 
+                    industrial precision. Built with the same obsessive attention to detail as a tuned 
+                    RB26DETT engine, this 60% layout delivers uncompromising performance with CNC-machined 
+                    reliability. No frills, no compromises—just pure mechanical dominance forged in the 
+                    spirit of Touge legends and built to outlast any challenge.
+                </p>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Get In Touch</h2>
+            
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Studio</h3>
+                    <p>Custom keyboard design and manufacturing services available worldwide</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Collaborations</h3>
+                    <p>Open to partnerships with designers, enthusiasts, and brands who share our vision</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Support</h3>
+                    <p>Dedicated support for all Antagonist Studios products and services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="future" class="future-section">
+        <div class="container">
+            <h2 class="future-title">The Future Awaits</h2>
+            <p class="future-description">
+                We're constantly pushing the boundaries of what's possible in mechanical keyboard design. 
+                Stay tuned for upcoming releases that will continue to challenge convention and redefine 
+                the typing experience. The next chapter of Antagonist Studios is being written.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Antagonist Studios. Crafted with precision and passion.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe keyboard cards
+        document.querySelectorAll('.keyboard-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
